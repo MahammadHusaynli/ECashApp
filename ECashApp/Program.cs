@@ -1,5 +1,4 @@
-﻿using ECashApp;
-using System;
+﻿using System;
 
 namespace ECashApp
 {
@@ -20,7 +19,6 @@ namespace ECashApp
 				Console.WriteLine("3. Show All Accounts");
 				Console.WriteLine("4. Account Operations");
 				Console.WriteLine("5. Exit");
-				Console.Write("Select: ");
 
 				choice = ReadInt("Select: ");
 
@@ -70,13 +68,30 @@ namespace ECashApp
 
 			do
 			{
-
 				Console.Write("Description: ");
 				string desc = Console.ReadLine();
 
 				Console.WriteLine("Select Currency: 1-AZN  2-USD");
-				int curChoice = ReadInt("Choice: ");
-				Currency currency = curChoice == 1 ? Currency.AZN : Currency.USD;
+				int curChoice;
+				do
+				{
+					curChoice = ReadInt("Choice: ");
+					if (curChoice != 1 && curChoice != 2)
+						Console.WriteLine("Wrong choice (only 1 or 2)");
+				} while (curChoice != 1 && curChoice != 2);
+
+				Currency currency;
+
+				if (curChoice == 1)
+				{
+					currency = Currency.AZN;
+				}
+				else
+				{
+					currency = Currency.USD;
+				}
+	
+
 
 				decimal balance = ReadDecimal("Initial balance: ");
 
@@ -105,7 +120,10 @@ namespace ECashApp
 				return;
 			}
 
-			cashBox.ShowAllAccounts();
+			foreach (var acc in cashBox.GetAllAccounts())
+			{
+				Console.WriteLine($"{acc.Number}  {acc.Balance} {acc.Currency}  {acc.Description}  {acc.Status}");
+			}
 			Console.ReadKey();
 		}
 
@@ -129,7 +147,7 @@ namespace ECashApp
 				return;
 			}
 
-			char choice = 'd';
+			char choice = 'x';
 
 			do
 			{
@@ -189,7 +207,9 @@ namespace ECashApp
 				else if (choice == 'c')
 				{
 					acc.ToggleStatus();
+					Console.WriteLine("Status changed to: " + acc.Status);
 				}
+
 
 				Console.ReadKey();
 

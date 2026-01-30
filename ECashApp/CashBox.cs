@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECashApp
 {
@@ -19,13 +16,11 @@ namespace ECashApp
 			Accounts.Add(account);
 		}
 
-		public void ShowAllAccounts()
+		public List<Account> GetAllAccounts()
 		{
-			foreach (var acc in Accounts)
-			{
-				Console.WriteLine($"{acc.Number}  {acc.Balance} {acc.Currency}  {acc.Description}  {acc.Status}");
-			}
+			return Accounts;
 		}
+
 		public Account GetAccountByNumber(int number)
 		{
 			foreach (var acc in Accounts)

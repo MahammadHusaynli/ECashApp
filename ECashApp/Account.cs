@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;	
 
 namespace ECashApp
 {
@@ -48,12 +44,10 @@ namespace ECashApp
 			if (Status == AccountStatus.Active)
 			{
 				Status = AccountStatus.Deactive;
-				Console.WriteLine("Account deactivated.");
 			}
 			else
 			{
 				Status = AccountStatus.Active;
-				Console.WriteLine("Account activated.");
 			}
 		}
 	}
